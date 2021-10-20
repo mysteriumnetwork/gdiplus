@@ -4200,6 +4200,10 @@ func GdipDisposeImage(nativeImage *GpImage) (status Status, err error) {
 	return gdiplusSyscall(procGdipDisposeImage, uintptr(unsafe.Pointer(nativeImage)))
 }
 
+func GdipLoadImageFromStream(stream *IStream, image **GpImage) (status Status, err error) {
+	return gdiplusSyscall(procGdipLoadImageFromStream, uintptr(unsafe.Pointer(stream)), uintptr(unsafe.Pointer(image)))
+}
+
 func GdipLoadImageFromFile(filename string, image **GpImage) (status Status, err error) {
 	return gdiplusSyscall(procGdipLoadImageFromFile, uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(filename))), uintptr(unsafe.Pointer(image)))
 }

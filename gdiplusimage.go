@@ -25,6 +25,12 @@ func NewImage(filename string, useEmbeddedColorManagement ...BOOL) (*Image, erro
 	return image, image.LastError
 }
 
+func NewImageFromStream(stream *IStream) (*Image, error) {
+	image := &Image{}
+	image.setStatus(GdipLoadImageFromStream(stream, &image.nativeImage))
+	return image, image.LastError
+}
+
 func (this *Image) Release() {
 	if this.nativeImage != nil {
 		this.setStatus(GdipDisposeImage(this.nativeImage))
